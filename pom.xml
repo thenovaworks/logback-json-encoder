@@ -5,6 +5,8 @@
     <groupId>io.github.thenovaworks</groupId>
     <artifactId>logback-json-encoder</artifactId>
     <version>1.0.0</version>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>Provides a logback encoder and layout to ingest logs in JSON format supported by Jackson.</description>
 
     <properties>
         <java.version>17</java.version>
@@ -120,13 +122,12 @@
 
     <scm>
         <connection>scm:git:https://github.com/thenovaworks/logback-json-encoder.git</connection>
-        <developerConnection>scm:git:ssh://github.com/thenovaworks/logback-json-encoder.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/thenovaworks/logback-json-encoder.git</developerConnection>
         <url>https://github.com/thenovaworks/logback-json-encoder.git</url>
     </scm>
 
     <build>
         <plugins>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
