@@ -7,6 +7,7 @@
     <version>1.0.0</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Provides a logback encoder and layout to ingest logs in JSON format supported by Jackson.</description>
+    <url>https://github.com/thenovaworks/logback-json-encoder</url>
 
     <properties>
         <java.version>17</java.version>
@@ -121,9 +122,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/thenovaworks/logback-json-encoder.git</connection>
-        <developerConnection>scm:git:https://github.com/thenovaworks/logback-json-encoder.git</developerConnection>
-        <url>https://github.com/thenovaworks/logback-json-encoder.git</url>
+        <url>https://github.com/thenovaworks/logback-json-encoder</url>
+        <connection>https://github.com/thenovaworks/logback-json-encoder.git</connection>
+        <developerConnection>https://github.com/thenovaworks/logback-json-encoder.git</developerConnection>
     </scm>
 
     <build>
