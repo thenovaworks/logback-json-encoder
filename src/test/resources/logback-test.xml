@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOG_PATH" value="./target/logs"/>
+    <property name="maxHistory" value="14"/>
+    <property name="maxFileSize" value="100MB"/>
+    <property name="totalSizeCap" value="1GB"/>
+    <property name="appName" value="myapp" scope="context"/>
+    <property name="appVersion" value="1.0.0" scope="context"/>
+    <contextName>${HOSTNAME}</contextName>
+    <sequenceNumberGenerator class="ch.qos.logback.core.spi.BasicSequenceNumberGenerator"/>
+
+    <appender name="CON01" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%n%contextName %property{appName} %property{appVersion} %date{ISO8601} %-5level %mdc{txId}
+                %-4relative [%thread] %logger{40}.%M\(%F:%L\) %msg %n%caller{2} %ex{full}
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="CON02" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="io.github.thenovaworks.logback.encoder.JsonPatternLayoutEncoder">
+            <pattern>%contextName %property{appName} %property{appVersion} %date{HH:mm:ss.SSS} %-5level %mdc{txId}
+                %-4relative [%thread] %logger{40}.%M\(%F:%L\)
+                %msg %C
+                %caller{5} %ex{full}%n
+            </pattern>
+            <compactTraceMode>true</compactTraceMode>
+            <supportCompositeConvert>true</supportCompositeConvert>
+            <!--
+            <exclude>com.</exclude>
+            <exclude>java.base</exclude>
+            <exclude>org.</exclude>
+            <exclude>com.intellij</exclude>
+            <include>com.intellij</include>
+            <include>java.base</include>
+            <include>io.github.thenovaworks</include>
+            <include>io.github.thenovaworks</include>
+            <include>com</include>
+            <include>java</include>
+            <include>org</include>
+            <exclude>org.junit.jupiter</exclude>
+            <exclude>org.junit.platform</exclude>
+            -->
+        </encoder>
+    </appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="io.github.thenovaworks.logback.encoder.JsonPatternLayoutEncoder">
+            <pattern>%contextName %property{appName} %property{appVersion} %sequenceNumber %lsn
+                %date{HH:mm:ss.SSS} %-5level %mdc{txId} %-4relative [%thread] %kvp %logger{40} %msg
+                %caller{5} %ex{35}%n
+            </pattern>
+            <prettyPrint>true</prettyPrint>
+            <!--
+            <exclude>com.</exclude>
+            <exclude>java.base</exclude>
+            <exclude>org.</exclude>
+            <exclude>com.intellij</exclude>
+            <include>com.intellij</include>
+            <include>java.base</include>
+            <include>io.github.thenovaworks</include>
+            -->
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/myapp.log.%d{yyyy-MM-dd}.%i.gz</fileNamePattern>
+            <maxHistory>${maxHistory}</maxHistory>
+            <maxFileSize>${maxFileSize}</maxFileSize>
+            <totalSizeCap>${totalSizeCap}</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="CON01"/>
+        <appender-ref ref="CON02"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>
