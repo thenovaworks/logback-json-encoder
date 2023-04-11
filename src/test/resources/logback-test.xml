@@ -10,6 +10,11 @@
     <contextName>${HOSTNAME}</contextName>
     <sequenceNumberGenerator class="ch.qos.logback.core.spi.BasicSequenceNumberGenerator"/>
 
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} %msg%n</pattern>
+        </encoder>
+    </appender>
     <appender name="CON01" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>%n%contextName %property{appName} %property{appVersion} %date{ISO8601} %-5level %mdc{txId}
@@ -69,9 +74,22 @@
         </rollingPolicy>
     </appender>
 
-    <root level="DEBUG">
+    <appender name="USERDATA" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="io.github.thenovaworks.logback.encoder.MessageOnlyEncoder"/>
+    </appender>
+
+    <logger name="DataCollector.userdata.ingest" level="TRACE" additivity="false">
+        <appender-ref ref="USERDATA"/>
+    </logger>
+    <logger name="io.github.thenovaworks.logback" level="DEBUG" additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <root level="INFO">
         <appender-ref ref="CON01"/>
         <appender-ref ref="CON02"/>
         <appender-ref ref="FILE"/>
     </root>
+
+
 </configuration>

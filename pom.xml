@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.thenovaworks</groupId>
     <artifactId>logback-json-encoder</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Provides a logback encoder and layout to ingest logs in JSON format supported by Jackson.</description>
     <url>https://github.com/thenovaworks/logback-json-encoder</url>
@@ -86,6 +86,11 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+<!--     jsr310       <scope>test</scope>-->
         </dependency>
         <dependency>
             <groupId>org.assertj</groupId>

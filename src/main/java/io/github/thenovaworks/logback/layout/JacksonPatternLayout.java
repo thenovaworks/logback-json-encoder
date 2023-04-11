@@ -299,8 +299,9 @@ public class JacksonPatternLayout extends LayoutBase<ILoggingEvent> {
                     if (key != null) {
                         generator.writeFieldName(key);
                         generator.writeString(c.convert(event));
-                    } else {
-                        System.out.println("---JacksonPatternLayout ::: not found key-class: " + c.getClass().getName());
+                    }
+                    else {
+                        // System.out.println("---JacksonPatternLayout ::: not found key-class: " + c.getClass().getName());
                     }
                 }
             } // end for
@@ -314,6 +315,5 @@ public class JacksonPatternLayout extends LayoutBase<ILoggingEvent> {
         }
 
     }
-
 
 }
